@@ -260,7 +260,7 @@ public static class Program
     {
         var solver = new DLXSolver();
         var board = solver.GenerateKandoku(); // 問題生成
-        var masked = DLXSolver.MaskKandoku(board, 64); // マス隠し
+        var masked = DLXSolver.MaskKandoku(board, 10); // マス隠し
 
         Console.WriteLine("\n=== 出題 ===");
         DisplayBoard(masked); // 問題表示

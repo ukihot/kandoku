@@ -12,3 +12,4 @@ C:\Users\tokunaga.y\Downloads\tn\kandoku\obj\Debug\net8.0\refint\kandoku.dll
 C:\Users\tokunaga.y\Downloads\tn\kandoku\obj\Debug\net8.0\kandoku.pdb
 C:\Users\tokunaga.y\Downloads\tn\kandoku\obj\Debug\net8.0\kandoku.genruntimeconfig.cache
 C:\Users\tokunaga.y\Downloads\tn\kandoku\obj\Debug\net8.0\ref\kandoku.dll
+C:\Users\tokunaga.y\Downloads\tn\kandoku\obj\Debug\net8.0\kandoku.sourcelink.json
