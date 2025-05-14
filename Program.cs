@@ -285,21 +285,7 @@ namespace SudokuSolver
         // 指定難易度でマスを「?」で隠す
         public static string[,] MaskKandoku(string[,] board, KandokuDifficulty difficulty)
         {
-            // 難易度ごとのマスク数
-            var maskTable = new Dictionary<KandokuDifficulty, int>
-            {
-                { KandokuDifficulty.VeryEasy, 39 },
-                { KandokuDifficulty.Easy, 47 },
-                { KandokuDifficulty.Normal, 51 },
-                { KandokuDifficulty.Hard, 54 },
-                { KandokuDifficulty.VeryHard, 56 },
-                { KandokuDifficulty.Extreme, 58 },
-                { KandokuDifficulty.Spicy, 60 },
-                { KandokuDifficulty.Insane, 62 },
-                { KandokuDifficulty.Nightmare, 63 },
-                { KandokuDifficulty.Unknown, 64 }
-            };
-            int maskCount = maskTable[difficulty];
+            int maskCount = GetMaskCount(difficulty);
             var rng = new Random();
             var positions = Enumerable.Range(0, 81).OrderBy(_ => rng.Next()).Take(maskCount);
             var masked = (string[,])board.Clone();
@@ -311,6 +297,22 @@ namespace SudokuSolver
             }
             return masked;
         }
+
+        // 難易度に応じたマス隠し数を取得
+        public static int GetMaskCount(KandokuDifficulty difficulty) => difficulty switch
+        {
+            KandokuDifficulty.VeryEasy => 39,
+            KandokuDifficulty.Easy => 47,
+            KandokuDifficulty.Normal => 51,
+            KandokuDifficulty.Hard => 54,
+            KandokuDifficulty.VeryHard => 56,
+            KandokuDifficulty.Extreme => 58,
+            KandokuDifficulty.Spicy => 60,
+            KandokuDifficulty.Insane => 62,
+            KandokuDifficulty.Nightmare => 63,
+            KandokuDifficulty.Unknown => 64,
+            _ => throw new ArgumentOutOfRangeException(nameof(difficulty))
+        };
     }
 }
 
