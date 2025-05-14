@@ -1,0 +1,14 @@
+C:\Users\tokunaga.y\Downloads\tn\kandoku\bin\Debug\net8.0\kandoku.exe
+C:\Users\tokunaga.y\Downloads\tn\kandoku\bin\Debug\net8.0\kandoku.deps.json
+C:\Users\tokunaga.y\Downloads\tn\kandoku\bin\Debug\net8.0\kandoku.runtimeconfig.json
+C:\Users\tokunaga.y\Downloads\tn\kandoku\bin\Debug\net8.0\kandoku.dll
+C:\Users\tokunaga.y\Downloads\tn\kandoku\bin\Debug\net8.0\kandoku.pdb
+C:\Users\tokunaga.y\Downloads\tn\kandoku\obj\Debug\net8.0\kandoku.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tokunaga.y\Downloads\tn\kandoku\obj\Debug\net8.0\kandoku.AssemblyInfoInputs.cache
+C:\Users\tokunaga.y\Downloads\tn\kandoku\obj\Debug\net8.0\kandoku.AssemblyInfo.cs
+C:\Users\tokunaga.y\Downloads\tn\kandoku\obj\Debug\net8.0\kandoku.csproj.CoreCompileInputs.cache
+C:\Users\tokunaga.y\Downloads\tn\kandoku\obj\Debug\net8.0\kandoku.dll
+C:\Users\tokunaga.y\Downloads\tn\kandoku\obj\Debug\net8.0\refint\kandoku.dll
+C:\Users\tokunaga.y\Downloads\tn\kandoku\obj\Debug\net8.0\kandoku.pdb
+C:\Users\tokunaga.y\Downloads\tn\kandoku\obj\Debug\net8.0\kandoku.genruntimeconfig.cache
+C:\Users\tokunaga.y\Downloads\tn\kandoku\obj\Debug\net8.0\ref\kandoku.dll
