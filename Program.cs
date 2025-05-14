@@ -355,7 +355,7 @@ public static class Program
         {
             for (int c = 0; c < 9; c++)
             {
-                Console.Write(board[r, c] + " ");
+                Console.Write($"{board[r, c],-1} ");
             }
             Console.WriteLine();
         }
