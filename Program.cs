@@ -299,7 +299,7 @@ namespace SudokuSolver
         }
 
         // 難易度に応じたマス隠し数を取得
-        public static int GetMaskCount(KandokuDifficulty difficulty) => difficulty switch
+        private static int GetMaskCount(KandokuDifficulty difficulty) => difficulty switch
         {
             KandokuDifficulty.VeryEasy => 39,
             KandokuDifficulty.Easy => 47,
