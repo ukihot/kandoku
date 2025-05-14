@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("kandoku")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b978e74ec603becc2b8cf4108e9956b94f232796")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e8343777c9055b9fb74c95139009c5d551c25bb7")]
 [assembly: System.Reflection.AssemblyProductAttribute("kandoku")]
 [assembly: System.Reflection.AssemblyTitleAttribute("kandoku")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
