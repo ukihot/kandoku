@@ -51,7 +51,7 @@ namespace SudokuSolver
 
         public DLXSolver() => header = BuildExactCoverMatrix(); // 行列構築
 
-        // ９マスのsudoku制約を表す行列構築
+        // ９マスのsudoku制約を表す巨大チェックリストを構築
         private static ColumnNode BuildExactCoverMatrix()
         {
             const int totalColumns = 4 * 81;
