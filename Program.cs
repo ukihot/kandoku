@@ -7,6 +7,20 @@ namespace SudokuSolver
         臨 = 1, 兵 = 2, 闘 = 3, 者 = 4, 皆 = 5, 陣 = 6, 列 = 7, 在 = 8, 前 = 9
     }
 
+    public enum KandokuDifficulty
+    {
+        VeryEasy = 1,
+        Easy = 2,
+        Normal = 3,
+        Hard = 4,
+        VeryHard = 5,
+        Extreme = 6,
+        Spicy = 7,
+        Insane = 8,
+        Nightmare = 9,
+        Unknown = 10
+    }
+
     // DLXアルゴリズムで使うノードのクラス
     public class DLXNode
     {
@@ -211,14 +225,17 @@ namespace SudokuSolver
         // ランダム並び替え
         private void Shuffle<T>(IList<T> list)
         {
-            foreach (var i in Enumerable.Range(1, list.Count - 1).Reverse())
+            if (list == null || list.Count <= 1)
+                return;
+
+            for (int i = list.Count - 1; i > 0; i--)
             {
-                int j = rng.Next(i + 1);
+                int j = rng.Next(i + 1);      // 0 ～ i の乱数
                 (list[i], list[j]) = (list[j], list[i]);
             }
         }
 
-        // カンドク（漢独）1問生成
+        // 作問
         public string[,] GenerateKandoku()
         {
             var solution = new List<DLXNode>();
@@ -235,11 +252,54 @@ namespace SudokuSolver
                 : throw new Exception("生成失敗");
         }
 
-        // 指定数だけマスを「?」で隠す
-        public static string[,] MaskKandoku(string[,] board, int maskCount)
+        // 盤面が制約を満たしているか検査
+        public static bool IsValidBoard(string[,] board)
         {
-            if (maskCount > 64 && maskCount < 1)
-                throw new Exception("マスク数は64以下");
+            // 各行・列・ブロックごとに数字の重複をチェック
+            for (int i = 0; i < 9; i++)
+            {
+                var rowSet = new HashSet<string>();
+                var colSet = new HashSet<string>();
+                var blockSet = new HashSet<string>();
+                for (int j = 0; j < 9; j++)
+                {
+                    // 行
+                    var rowVal = board[i, j];
+                    if (rowVal != null && rowVal != "? " && !rowSet.Add(rowVal))
+                        return false;
+                    // 列
+                    var colVal = board[j, i];
+                    if (colVal != null && colVal != "? " && !colSet.Add(colVal))
+                        return false;
+                    // ブロック
+                    int br = (i / 3) * 3 + (j / 3);
+                    int bc = (i % 3) * 3 + (j % 3);
+                    var blockVal = board[br, bc];
+                    if (blockVal != null && blockVal != "? " && !blockSet.Add(blockVal))
+                        return false;
+                }
+            }
+            return true;
+        }
+
+        // 指定難易度でマスを「?」で隠す
+        public static string[,] MaskKandoku(string[,] board, KandokuDifficulty difficulty)
+        {
+            // 難易度ごとのマスク数
+            var maskTable = new Dictionary<KandokuDifficulty, int>
+            {
+                { KandokuDifficulty.VeryEasy, 39 },
+                { KandokuDifficulty.Easy, 47 },
+                { KandokuDifficulty.Normal, 51 },
+                { KandokuDifficulty.Hard, 54 },
+                { KandokuDifficulty.VeryHard, 56 },
+                { KandokuDifficulty.Extreme, 58 },
+                { KandokuDifficulty.Spicy, 60 },
+                { KandokuDifficulty.Insane, 62 },
+                { KandokuDifficulty.Nightmare, 63 },
+                { KandokuDifficulty.Unknown, 64 }
+            };
+            int maskCount = maskTable[difficulty];
             var rng = new Random();
             var positions = Enumerable.Range(0, 81).OrderBy(_ => rng.Next()).Take(maskCount);
             var masked = (string[,])board.Clone();
@@ -256,13 +316,30 @@ namespace SudokuSolver
 
 public static class Program
 {
-    public static void Main()
+    public static void Main(string[] args)
     {
+        // コマンドライン引数から難易度を取得（1～10）
+        int diffNum = 3; // デフォルト: Normal
+        if (args.Length > 0 && int.TryParse(args[0], out int n) && n >= 1 && n <= 10)
+        {
+            diffNum = n;
+        }
+        var difficulty = (KandokuDifficulty)diffNum;
+
         var solver = new DLXSolver();
         var board = solver.GenerateKandoku(); // 問題生成
-        var masked = DLXSolver.MaskKandoku(board, 10); // マス隠し
 
-        Console.WriteLine("\n=== 出題 ===");
+        // 盤面検査
+        if (!DLXSolver.IsValidBoard(board))
+        {
+            Console.WriteLine("生成された盤面が要件を満たしていません。");
+            throw new Exception("盤面検証失敗");
+        }
+
+        // 難易度を指定してマス隠し
+        var masked = DLXSolver.MaskKandoku(board, difficulty);
+
+        Console.WriteLine($"\n=== 出題 (難易度: {difficulty}) ===");
         DisplayBoard(masked); // 問題表示
 
         Console.WriteLine("\n=== 解答 ===");
